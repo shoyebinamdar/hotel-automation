@@ -1,7 +1,9 @@
 package utils;
 
 public enum State {
-    LIGHT_ON(5),
+    ON,
+    OFF
+    /*LIGHT_ON(5),
     LIGHT_OFF(0),
     AC_ON(10),
     AC_OFF(0);
@@ -13,5 +15,5 @@ public enum State {
 
     public int getValue() {
         return this.value;
-    }
+    }*/
 }

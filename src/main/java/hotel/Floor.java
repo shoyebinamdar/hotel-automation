@@ -3,29 +3,23 @@ package hotel;
 import corridors.Corridor;
 import corridors.MainCorridor;
 import corridors.SubCorridor;
+import lombok.Builder;
+import utils.State;
 
 import java.util.List;
 
+@Builder
 public class Floor {
     private List<MainCorridor> mainCorridors;
     private List<SubCorridor> subCorridors;
-    private int consumption, maximumAllowedConsumption;
-    private ObserverInterface observerInterface;
-
-    public Floor(List<MainCorridor> mainCorridors, List<SubCorridor> subCorridors) {
-        this.mainCorridors = mainCorridors;
-        this.subCorridors = subCorridors;
-
-        computeDefaultConsumption();
-        maximumAllowedConsumption = computeMaximumAllowedConsumption();
-    }
+    private ObserverInterface observer;
 
     public void movementDetected(Corridor corridor) {
         subCorridors.stream().filter(c -> c.equals(corridor)).findFirst().ifPresent(SubCorridor::movementDetected);
         notifyController();
 
         if (!isConsumptionWithinLimit()) {
-            subCorridors.stream().filter(c -> !c.equals(corridor)).findFirst().ifPresent(SubCorridor::turnOffAC);
+            subCorridors.stream().filter(c -> !c.equals(corridor) || c.getACState() == State.ON).findFirst().ifPresent(SubCorridor::turnOffAC);
             notifyController();
         }
     }
@@ -35,32 +29,24 @@ public class Floor {
         notifyController();
     }
 
-    public int getConsumption() {
-        return consumption;
+    public int consumption() {
+        return mainCorridors.stream().map(c -> c.getConsumption()).reduce(0, Integer::sum) +
+                subCorridors.stream().map(c -> c.getConsumption()).reduce(0, Integer::sum);
     }
 
     public boolean isConsumptionWithinLimit() {
-        return consumption <= maximumAllowedConsumption;
-    }
-
-    public void registerObserver(ObserverInterface observerInterface) {
-        this.observerInterface = observerInterface;
-    }
-
-    public void unregisterObserver(ObserverInterface observerInterface) {
-        this.observerInterface = observerInterface;
+        return consumption() <= maximumAllowedConsumption();
     }
 
     public void notifyController() {
-        this.observerInterface.update(this);
+        this.observer.update(this);
     }
 
-    public void computeDefaultConsumption() {
-        consumption = mainCorridors.stream().map(c -> c.getCurrentConsumption()).reduce(0, Integer::sum) +
-                      subCorridors.stream().map(c -> c.getCurrentConsumption()).reduce(0, Integer::sum);
-    }
-
-    private int computeMaximumAllowedConsumption() {
+    private int maximumAllowedConsumption() {
         return this.mainCorridors.size() * 15 + this.subCorridors.size() * 10;
+    }
+
+    public void attachObserver(ObserverInterface observer) {
+        this.observer = observer;
     }
 }

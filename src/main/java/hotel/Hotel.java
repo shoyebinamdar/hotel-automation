@@ -1,17 +1,14 @@
 package hotel;
 
+import lombok.Builder;
+
 import java.util.List;
 
-public class Hotel implements ObserverInterface {
-    List<Floor> floors;
+@Builder
+public class Hotel {
+    private List<Floor> floors;
 
-    public Hotel(List<Floor> floors) {
-        this.floors = floors;
+    public List<Floor> getFloors() {
+        return floors;
     }
-
-    @Override
-    public void update(Floor floor) {
-        floors.stream().filter(c -> c.equals(floor)).findFirst().ifPresent(Floor::computeDefaultConsumption);
-    }
-
 }

@@ -3,10 +3,12 @@ package equipments;
 import utils.State;
 
 public class AirConditioner implements ElectronicEquipment {
-    State state;
+    private State state;
+    private int consumption;
 
-    public AirConditioner(State state) {
+    public AirConditioner(State state, int consumption) {
         this.state = state;
+        this.consumption = consumption;
     }
 
     public State getState() {
@@ -18,12 +20,17 @@ public class AirConditioner implements ElectronicEquipment {
     }
 
     @Override
-    public void turnOn() {
-        state = State.AC_ON;
+    public int getConsumption() {
+        return this.state == State.ON ? this.consumption : 0;
     }
 
     @Override
-    public void turnOff() {
-        state = State.AC_OFF;
+    public void on() {
+        this.state = State.ON;
+    }
+
+    @Override
+    public void off() {
+        this.state = State.OFF;
     }
 }

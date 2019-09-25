@@ -1,15 +1,13 @@
 package corridors;
 
-import utils.State;
+import equipments.ElectronicEquipment;
+import lombok.Builder;
 
-public class MainCorridor extends Corridor {
-    public MainCorridor() {
-        super(State.LIGHT_ON, State.AC_ON);
+@Builder
+public class MainCorridor implements Corridor{
+    private ElectronicEquipment light, airConditioner;
+
+    public int getConsumption() {
+        return light.getConsumption() + airConditioner.getConsumption();
     }
-
-    @Override
-    public void movementDetected() { }
-
-    @Override
-    public void noMovementDetected() { }
 }

@@ -4,6 +4,7 @@ import utils.State;
 
 public interface ElectronicEquipment {
     State getState();
-    void turnOn();
-    void turnOff();
+    int getConsumption();
+    void on();
+    void off();
 }

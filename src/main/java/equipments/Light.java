@@ -4,13 +4,15 @@ import utils.State;
 
 public class Light implements ElectronicEquipment {
     private State state;
+    private int consumption;
 
-    public Light(State state) {
+    public Light(State state, int consumption) {
         this.state = state;
+        this.consumption = consumption;
     }
 
     public State getState() {
-        return state;
+        return this.state;
     }
 
     public void setState(State state) {
@@ -18,12 +20,17 @@ public class Light implements ElectronicEquipment {
     }
 
     @Override
-    public void turnOn() {
-        state = State.LIGHT_ON;
+    public int getConsumption() {
+        return this.state == State.ON ? this.consumption : 0;
     }
 
     @Override
-    public void turnOff() {
-        state = State.LIGHT_OFF;
+    public void on() {
+        state = State.ON;
+    }
+
+    @Override
+    public void off() {
+        state = State.OFF;
     }
 }
