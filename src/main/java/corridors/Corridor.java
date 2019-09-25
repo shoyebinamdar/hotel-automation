@@ -4,12 +4,10 @@ import equipments.AirConditioner;
 import equipments.ElectronicEquipment;
 import equipments.Light;
 import utils.State;
-import controller.ObserverInterface;
 
 public abstract class Corridor {
     private ElectronicEquipment light;
     private ElectronicEquipment airConditioner;
-    private ObserverInterface observerInterface;
 
     public Corridor(State lightState, State airConditionerSate) {
         this.light = new Light(lightState);
@@ -28,17 +26,7 @@ public abstract class Corridor {
         return airConditioner;
     }
 
-    public void registerObserver(ObserverInterface observerInterface) {
-        this.observerInterface = observerInterface;
-    }
 
-    public void unregisterObserver(ObserverInterface observerInterface) {
-        this.observerInterface = observerInterface;
-    }
-
-    public void notifyController() {
-        this.observerInterface.update();
-    }
 
     public abstract void movementDetected();
 

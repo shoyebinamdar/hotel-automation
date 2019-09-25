@@ -1,6 +1,6 @@
 import corridors.MainCorridor;
 import corridors.SubCorridor;
-import controller.Floor;
+import hotel.Floor;
 import org.junit.Test;
 
 import java.util.Arrays;

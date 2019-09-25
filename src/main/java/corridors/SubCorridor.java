@@ -10,18 +10,15 @@ public class SubCorridor extends Corridor {
     @Override
     public void movementDetected() {
         this.getLight().turnOn();
-        notifyController();
     }
 
     @Override
     public void noMovementDetected() {
         this.getLight().turnOff();
         this.getAirConditioner().turnOn();
-        notifyController();
     }
 
     public void turnOffAC() {
         this.getAirConditioner().turnOff();
-        notifyController();
     }
 }

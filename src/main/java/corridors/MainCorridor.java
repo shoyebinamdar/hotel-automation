@@ -12,7 +12,4 @@ public class MainCorridor extends Corridor {
 
     @Override
     public void noMovementDetected() { }
-
-    @Override
-    public void notifyController() { }
 }
