@@ -1,5 +1,5 @@
 package com.sahaj.hotelautomation.controller;
 
-public interface ObserverInterface {
+public interface ControllerInterface {
     void update(Floor floor);
 }

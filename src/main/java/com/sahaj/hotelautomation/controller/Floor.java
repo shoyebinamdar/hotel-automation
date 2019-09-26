@@ -12,7 +12,7 @@ import java.util.List;
 public class Floor {
     private List<MainCorridor> mainCorridors;
     private List<SubCorridor> subCorridors;
-    private ObserverInterface observer;
+    private ControllerInterface observer;
 
     public void movementDetected(Corridor corridor) {
         subCorridors.stream().filter(c -> c.equals(corridor)).findFirst().ifPresent(SubCorridor::movementDetected);
@@ -46,7 +46,7 @@ public class Floor {
         return this.mainCorridors.size() * 15 + this.subCorridors.size() * 10;
     }
 
-    public void attachObserver(ObserverInterface observer) {
+    public void attachObserver(ControllerInterface observer) {
         this.observer = observer;
     }
 }
