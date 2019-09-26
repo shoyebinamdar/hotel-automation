@@ -32,4 +32,9 @@ public class SubCorridor implements Corridor {
     public State getACState() {
         return this.airConditioner.getState();
     }
+
+    @Override
+    public void printStatus() {
+        System.out.println("Light : " + light.getState() + " | AC : " + airConditioner.getState());
+    }
 }

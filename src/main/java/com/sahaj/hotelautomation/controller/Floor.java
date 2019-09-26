@@ -49,4 +49,16 @@ public class Floor {
     public void attachObserver(ControllerInterface observer) {
         this.observer = observer;
     }
+
+    public void printStatus() {
+        for (int i = 0; i < mainCorridors.size(); i++) {
+            System.out.println("Main corridor " + (i + 1));
+            mainCorridors.get(i).printStatus();
+        }
+
+        for (int i = 0; i < subCorridors.size(); i++) {
+            System.out.println("Sub corridor " + (i + 1));
+            subCorridors.get(i).printStatus();
+        }
+    }
 }

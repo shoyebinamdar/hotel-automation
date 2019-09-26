@@ -10,4 +10,9 @@ public class MainCorridor implements Corridor{
     public int getConsumption() {
         return light.getConsumption() + airConditioner.getConsumption();
     }
+
+    @Override
+    public void printStatus() {
+        System.out.println("Light : " + light.getState() + " | AC : " + airConditioner.getState());
+    }
 }
