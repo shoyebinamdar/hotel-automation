@@ -1,10 +1,10 @@
-import corridors.MainCorridor;
-import equipments.AirConditioner;
-import equipments.Light;
-import org.junit.Test;
-import utils.State;
+package com.hotel.equipments;
 
-import static org.junit.Assert.*;
+import com.hotel.corridors.MainCorridor;
+import com.hotel.utils.State;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class MainCorridorTest {
     @Test

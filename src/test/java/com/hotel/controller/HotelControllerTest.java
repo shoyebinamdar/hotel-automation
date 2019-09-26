@@ -1,12 +1,11 @@
-package hotel;
+package com.hotel.controller;
 
-import corridors.MainCorridor;
-import corridors.SubCorridor;
-import equipments.AirConditioner;
-import equipments.Light;
-import org.junit.Assert;
+import com.hotel.corridors.MainCorridor;
+import com.hotel.corridors.SubCorridor;
+import com.hotel.equipments.AirConditioner;
+import com.hotel.equipments.Light;
 import org.junit.Test;
-import utils.State;
+import com.hotel.utils.State;
 
 import java.util.Arrays;
 

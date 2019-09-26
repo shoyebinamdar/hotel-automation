@@ -1,15 +1,16 @@
-import corridors.MainCorridor;
-import corridors.SubCorridor;
-import equipments.AirConditioner;
-import equipments.Light;
-import hotel.Floor;
+package com.hotel.controller;
+
+import com.hotel.corridors.MainCorridor;
+import com.hotel.corridors.SubCorridor;
+import com.hotel.equipments.AirConditioner;
+import com.hotel.equipments.Light;
+import com.hotel.utils.State;
 import org.junit.Test;
-import utils.State;
 
 import java.util.Arrays;
-import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class FloorTest {
 

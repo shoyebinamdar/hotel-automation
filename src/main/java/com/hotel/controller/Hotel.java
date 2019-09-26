@@ -1,4 +1,4 @@
-package hotel;
+package com.hotel.controller;
 
 import lombok.Builder;
 

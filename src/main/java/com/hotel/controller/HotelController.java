@@ -1,4 +1,4 @@
-package hotel;
+package com.hotel.controller;
 
 public class HotelController implements ObserverInterface {
     private Hotel hotel;

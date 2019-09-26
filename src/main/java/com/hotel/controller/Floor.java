@@ -1,10 +1,10 @@
-package hotel;
+package com.hotel.controller;
 
-import corridors.Corridor;
-import corridors.MainCorridor;
-import corridors.SubCorridor;
+import com.hotel.corridors.Corridor;
+import com.hotel.corridors.MainCorridor;
+import com.hotel.corridors.SubCorridor;
 import lombok.Builder;
-import utils.State;
+import com.hotel.utils.State;
 
 import java.util.List;
 

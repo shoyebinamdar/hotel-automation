@@ -1,4 +1,4 @@
-package utils;
+package com.hotel.utils;
 
 public enum State {
     ON,

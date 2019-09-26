@@ -1,6 +1,6 @@
-package corridors;
+package com.hotel.corridors;
 
-import equipments.ElectronicEquipment;
+import com.hotel.equipments.ElectronicEquipment;
 import lombok.Builder;
 
 @Builder

@@ -1,6 +1,6 @@
-package equipments;
+package com.hotel.equipments;
 
-import utils.State;
+import com.hotel.utils.State;
 
 public class Light implements ElectronicEquipment {
     private State state;

@@ -1,12 +1,12 @@
-import corridors.SubCorridor;
-import equipments.AirConditioner;
-import equipments.Light;
+package com.hotel.equipments;
+
+import com.hotel.corridors.SubCorridor;
+import com.hotel.utils.State;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
-import utils.State;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 
