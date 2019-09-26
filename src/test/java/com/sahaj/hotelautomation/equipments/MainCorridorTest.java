@@ -1,7 +1,7 @@
-package com.hotel.equipments;
+package com.sahaj.hotelautomation.equipments;
 
-import com.hotel.corridors.MainCorridor;
-import com.hotel.utils.State;
+import com.sahaj.hotelautomation.corridors.MainCorridor;
+import com.sahaj.hotelautomation.utils.State;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

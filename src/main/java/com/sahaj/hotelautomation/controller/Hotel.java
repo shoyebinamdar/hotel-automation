@@ -1,4 +1,4 @@
-package com.hotel.controller;
+package com.sahaj.hotelautomation.controller;
 
 import lombok.Builder;
 

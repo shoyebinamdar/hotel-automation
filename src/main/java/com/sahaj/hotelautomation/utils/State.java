@@ -1,4 +1,4 @@
-package com.hotel.utils;
+package com.sahaj.hotelautomation.utils;
 
 public enum State {
     ON,

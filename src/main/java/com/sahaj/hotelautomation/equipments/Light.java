@@ -1,18 +1,18 @@
-package com.hotel.equipments;
+package com.sahaj.hotelautomation.equipments;
 
-import com.hotel.utils.State;
+import com.sahaj.hotelautomation.utils.State;
 
-public class AirConditioner implements ElectronicEquipment {
+public class Light implements ElectronicEquipment {
     private State state;
     private int consumption;
 
-    public AirConditioner(State state, int consumption) {
+    public Light(State state, int consumption) {
         this.state = state;
         this.consumption = consumption;
     }
 
     public State getState() {
-        return state;
+        return this.state;
     }
 
     public void setState(State state) {
@@ -26,11 +26,11 @@ public class AirConditioner implements ElectronicEquipment {
 
     @Override
     public void on() {
-        this.state = State.ON;
+        state = State.ON;
     }
 
     @Override
     public void off() {
-        this.state = State.OFF;
+        state = State.OFF;
     }
 }

@@ -1,10 +1,10 @@
-package com.hotel.controller;
+package com.sahaj.hotelautomation.controller;
 
-import com.hotel.corridors.Corridor;
-import com.hotel.corridors.MainCorridor;
-import com.hotel.corridors.SubCorridor;
+import com.sahaj.hotelautomation.corridors.Corridor;
+import com.sahaj.hotelautomation.corridors.MainCorridor;
+import com.sahaj.hotelautomation.corridors.SubCorridor;
+import com.sahaj.hotelautomation.utils.State;
 import lombok.Builder;
-import com.hotel.utils.State;
 
 import java.util.List;
 

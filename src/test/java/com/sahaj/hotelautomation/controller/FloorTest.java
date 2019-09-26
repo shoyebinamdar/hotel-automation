@@ -1,10 +1,10 @@
-package com.hotel.controller;
+package com.sahaj.hotelautomation.controller;
 
-import com.hotel.corridors.MainCorridor;
-import com.hotel.corridors.SubCorridor;
-import com.hotel.equipments.AirConditioner;
-import com.hotel.equipments.Light;
-import com.hotel.utils.State;
+import com.sahaj.hotelautomation.corridors.MainCorridor;
+import com.sahaj.hotelautomation.corridors.SubCorridor;
+import com.sahaj.hotelautomation.equipments.AirConditioner;
+import com.sahaj.hotelautomation.equipments.Light;
+import com.sahaj.hotelautomation.utils.State;
 import org.junit.Test;
 
 import java.util.Arrays;

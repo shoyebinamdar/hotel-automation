@@ -1,8 +1,8 @@
-package com.hotel.corridors;
+package com.sahaj.hotelautomation.corridors;
 
-import com.hotel.equipments.ElectronicEquipment;
+import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
 import lombok.Builder;
-import com.hotel.utils.State;
+import com.sahaj.hotelautomation.utils.State;
 
 @Builder
 public class SubCorridor implements Corridor {

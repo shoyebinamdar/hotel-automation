@@ -1,7 +1,7 @@
-package com.hotel.equipments;
+package com.sahaj.hotelautomation.equipments;
 
-import com.hotel.corridors.SubCorridor;
-import com.hotel.utils.State;
+import com.sahaj.hotelautomation.corridors.SubCorridor;
+import com.sahaj.hotelautomation.utils.State;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;

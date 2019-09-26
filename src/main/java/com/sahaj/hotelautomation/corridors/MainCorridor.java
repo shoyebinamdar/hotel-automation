@@ -1,6 +1,6 @@
-package com.hotel.corridors;
+package com.sahaj.hotelautomation.corridors;
 
-import com.hotel.equipments.ElectronicEquipment;
+import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
 import lombok.Builder;
 
 @Builder

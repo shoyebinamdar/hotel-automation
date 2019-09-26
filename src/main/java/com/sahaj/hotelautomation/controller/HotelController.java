@@ -1,4 +1,4 @@
-package com.hotel.controller;
+package com.sahaj.hotelautomation.controller;
 
 public class HotelController implements ObserverInterface {
     private Hotel hotel;
