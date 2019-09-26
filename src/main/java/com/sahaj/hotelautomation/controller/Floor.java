@@ -3,7 +3,6 @@ package com.sahaj.hotelautomation.controller;
 import com.sahaj.hotelautomation.corridors.Corridor;
 import com.sahaj.hotelautomation.corridors.MainCorridor;
 import com.sahaj.hotelautomation.corridors.SubCorridor;
-import com.sahaj.hotelautomation.utils.State;
 import lombok.Builder;
 
 import java.util.List;
@@ -14,18 +13,25 @@ public class Floor {
     private List<SubCorridor> subCorridors;
     private ControllerInterface observer;
 
-    public void movementDetected(Corridor corridor) {
+    public void movementDetected(Corridor corridor) throws Exception {
         subCorridors.stream().filter(c -> c.equals(corridor)).findFirst().ifPresent(SubCorridor::movementDetected);
         notifyController();
 
         if (!isConsumptionWithinLimit()) {
-            subCorridors.stream().filter(c -> !c.equals(corridor) || c.getACState() == State.ON).findFirst().ifPresent(SubCorridor::turnOffAC);
+            subCorridors.stream()
+                    .filter(c -> !c.equals(corridor) && !c.hasMovement())
+                    .findFirst()
+                    .map(subCorridor -> {
+                        subCorridor.turnOffAC();
+                        return subCorridor;
+                    })
+                    .orElseThrow(() -> new Exception("Illegal state"));
             notifyController();
         }
     }
 
     public void noMovementDetected() {
-        subCorridors.stream().forEach(SubCorridor::noMovementDetected);
+        subCorridors.forEach(SubCorridor::noMovementDetected);
         notifyController();
     }
 
@@ -38,7 +44,7 @@ public class Floor {
         return consumption() <= maximumAllowedConsumption();
     }
 
-    public void notifyController() {
+    private void notifyController() {
         this.observer.update(this);
     }
 
@@ -50,15 +56,11 @@ public class Floor {
         this.observer = observer;
     }
 
-    public void printStatus() {
-        for (int i = 0; i < mainCorridors.size(); i++) {
-            System.out.println("Main corridor " + (i + 1));
-            mainCorridors.get(i).printStatus();
-        }
+    public List<MainCorridor> getMainCorridors() {
+        return mainCorridors;
+    }
 
-        for (int i = 0; i < subCorridors.size(); i++) {
-            System.out.println("Sub corridor " + (i + 1));
-            subCorridors.get(i).printStatus();
-        }
+    public List<SubCorridor> getSubCorridors() {
+        return subCorridors;
     }
 }

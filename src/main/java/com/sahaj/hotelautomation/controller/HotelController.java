@@ -1,6 +1,6 @@
 package com.sahaj.hotelautomation.controller;
 
-import java.util.List;
+import com.sahaj.hotelautomation.output.OutputListener;
 
 public class HotelController implements ControllerInterface {
     private Hotel hotel;
@@ -13,12 +13,8 @@ public class HotelController implements ControllerInterface {
         return hotel.getFloors().stream().map(f -> f.consumption()).reduce(0, Integer::sum);
     }
 
-    public void printStatus() {
-        List<Floor> floors = hotel.getFloors();
-        for (int i = 0 ; i < floors.size(); i++) {
-            System.out.println("Floor " + (i + 1));
-            floors.get(i).printStatus();
-        }
+    public void write(OutputListener outputListener) {
+        outputListener.write(hotel);
     }
 
     @Override
@@ -27,6 +23,6 @@ public class HotelController implements ControllerInterface {
     }
 
     public void addNotifiers() {
-        hotel.getFloors().stream().forEach(floor -> floor.attachObserver(this));
+        hotel.getFloors().forEach(floor -> floor.attachObserver(this));
     }
 }

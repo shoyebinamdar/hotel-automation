@@ -2,8 +2,8 @@ package com.sahaj.hotelautomation.controller;
 
 import com.sahaj.hotelautomation.corridors.MainCorridor;
 import com.sahaj.hotelautomation.corridors.SubCorridor;
-import com.sahaj.hotelautomation.equipments.AirConditioner;
-import com.sahaj.hotelautomation.equipments.Light;
+import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
+import com.sahaj.hotelautomation.utils.EquipmentType;
 import com.sahaj.hotelautomation.utils.State;
 import org.junit.Test;
 
@@ -27,14 +27,17 @@ public class FloorTest {
     @Test
     public void defaultConsumptionWithOneMainAndOneSubCorridor() {
         MainCorridor mainCorridor = MainCorridor.builder()
-                .light(new Light(State.ON, 5))
-                .airConditioner(new AirConditioner(State.ON, 10))
-                .build();
+                .equipments(Arrays.asList(
+                        new ElectronicEquipment(EquipmentType.LIGHT, State.ON, 5),
+                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10))
+                ).build();
 
         SubCorridor subCorridor = SubCorridor.builder()
-                .light(new Light(State.OFF, 5))
-                .airConditioner(new AirConditioner(State.ON, 10))
-                .build();
+                .equipments(Arrays.asList(
+                        new ElectronicEquipment(EquipmentType.LIGHT, State.OFF, 5),
+                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10)
+                )).build();
+
         Floor floor = Floor.builder()
                 .mainCorridors(Arrays.asList(mainCorridor))
                 .subCorridors(Arrays.asList(subCorridor))
@@ -47,18 +50,23 @@ public class FloorTest {
     @Test
     public void defaultConsumptionWithOneMainAndTwoSubCorridors() {
         MainCorridor mainCorridor = MainCorridor.builder()
-                .light(new Light(State.ON, 5))
-                .airConditioner(new AirConditioner(State.ON, 10))
-                .build();
+                .equipments(Arrays.asList(
+                        new ElectronicEquipment(EquipmentType.LIGHT, State.ON, 5),
+                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10))
+                ).build();
 
         SubCorridor subCorridor1 = SubCorridor.builder()
-                .light(new Light(State.OFF, 5))
-                .airConditioner(new AirConditioner(State.ON, 10))
-                .build();
+                .equipments(Arrays.asList(
+                        new ElectronicEquipment(EquipmentType.LIGHT, State.OFF, 5),
+                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10)
+                )).build();
+
         SubCorridor subCorridor2 = SubCorridor.builder()
-                .light(new Light(State.OFF, 5))
-                .airConditioner(new AirConditioner(State.ON, 10))
-                .build();
+                .equipments(Arrays.asList(
+                        new ElectronicEquipment(EquipmentType.LIGHT, State.OFF, 5),
+                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10)
+                )).build();
+
         Floor floor = Floor.builder()
                 .mainCorridors(Arrays.asList(mainCorridor))
                 .subCorridors(Arrays.asList(subCorridor1, subCorridor2))

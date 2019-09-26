@@ -1,40 +1,62 @@
 package com.sahaj.hotelautomation.corridors;
 
 import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
+import com.sahaj.hotelautomation.utils.EquipmentType;
 import lombok.Builder;
 import com.sahaj.hotelautomation.utils.State;
 
+import java.util.List;
+
 @Builder
 public class SubCorridor implements Corridor {
-    private ElectronicEquipment light, airConditioner;
+    private List<ElectronicEquipment> equipments;
     private boolean hasMovement;
 
     @Override
     public int getConsumption() {
-        return light.getConsumption() + airConditioner.getConsumption();
+        return equipments.stream()
+                .map(electronicEquipment -> electronicEquipment.getConsumption())
+                .reduce(0, Integer::sum);
     }
 
     public void movementDetected() {
         this.hasMovement = true;
-        this.light.on();
+        equipments.stream()
+                .filter(electronicEquipment -> electronicEquipment.TYPE == EquipmentType.LIGHT)
+                .findFirst()
+                .ifPresent(ElectronicEquipment::on);
     }
     
     public void noMovementDetected() {
         this.hasMovement = false;
-        this.light.off();
-        this.airConditioner.on();
+        equipments.stream()
+                .filter(electronicEquipment -> electronicEquipment.TYPE == EquipmentType.LIGHT)
+                .findFirst()
+                .ifPresent(ElectronicEquipment::off);
+        equipments.stream()
+                .filter(electronicEquipment -> electronicEquipment.TYPE == EquipmentType.AC)
+                .findFirst()
+                .ifPresent(ElectronicEquipment::on);
     }
 
     public void turnOffAC() {
-        this.airConditioner.off();
+        equipments.stream()
+                .filter(electronicEquipment -> electronicEquipment.TYPE == EquipmentType.AC)
+                .findFirst()
+                .ifPresent(ElectronicEquipment::off);
     }
 
     public State getACState() {
-        return this.airConditioner.getState();
+        return equipments.stream()
+                .filter(electronicEquipment -> electronicEquipment.TYPE == EquipmentType.AC)
+                .findFirst().get().getState();
     }
 
-    @Override
-    public void printStatus() {
-        System.out.println("Light : " + light.getState() + " | AC : " + airConditioner.getState());
+    public boolean hasMovement() {
+        return hasMovement;
+    }
+
+    public List<ElectronicEquipment> getEquipments() {
+        return equipments;
     }
 }
