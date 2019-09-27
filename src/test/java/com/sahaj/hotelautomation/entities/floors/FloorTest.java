@@ -1,8 +1,9 @@
-package com.sahaj.hotelautomation.controller;
+package com.sahaj.hotelautomation.entities.floors;
 
-import com.sahaj.hotelautomation.corridors.MainCorridor;
-import com.sahaj.hotelautomation.corridors.SubCorridor;
+import com.sahaj.hotelautomation.entities.corridors.MainCorridor;
+import com.sahaj.hotelautomation.entities.corridors.SubCorridor;
 import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
+import com.sahaj.hotelautomation.entities.floors.Floor;
 import com.sahaj.hotelautomation.utils.EquipmentType;
 import com.sahaj.hotelautomation.utils.State;
 import org.junit.Test;

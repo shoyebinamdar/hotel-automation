@@ -1,4 +1,4 @@
-package com.sahaj.hotelautomation.corridors;
+package com.sahaj.hotelautomation.entities.corridors;
 
 import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
 import lombok.Builder;
@@ -11,7 +11,7 @@ public class MainCorridor implements Corridor{
 
     public int getConsumption() {
         return equipments.stream()
-                .map(electronicEquipment -> electronicEquipment.getConsumption())
+                .map(ElectronicEquipment::getConsumption)
                 .reduce(0, Integer::sum);
     }
 

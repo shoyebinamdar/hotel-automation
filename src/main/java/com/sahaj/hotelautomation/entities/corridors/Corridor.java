@@ -1,4 +1,4 @@
-package com.sahaj.hotelautomation.corridors;
+package com.sahaj.hotelautomation.entities.corridors;
 
 public interface Corridor {
     int getConsumption();

@@ -1,5 +1,6 @@
-package com.sahaj.hotelautomation.controller;
+package com.sahaj.hotelautomation.entities;
 
+import com.sahaj.hotelautomation.entities.floors.Floor;
 import lombok.Builder;
 
 import java.util.List;

@@ -1,8 +1,8 @@
-package com.sahaj.hotelautomation.controller;
+package com.sahaj.hotelautomation.entities.floors;
 
-import com.sahaj.hotelautomation.corridors.Corridor;
-import com.sahaj.hotelautomation.corridors.MainCorridor;
-import com.sahaj.hotelautomation.corridors.SubCorridor;
+import com.sahaj.hotelautomation.entities.corridors.Corridor;
+import com.sahaj.hotelautomation.entities.corridors.MainCorridor;
+import com.sahaj.hotelautomation.entities.corridors.SubCorridor;
 import lombok.Builder;
 
 import java.util.List;
@@ -11,11 +11,9 @@ import java.util.List;
 public class Floor {
     private List<MainCorridor> mainCorridors;
     private List<SubCorridor> subCorridors;
-    private ControllerInterface observer;
 
     public void movementDetected(Corridor corridor) throws Exception {
         subCorridors.stream().filter(c -> c.equals(corridor)).findFirst().ifPresent(SubCorridor::movementDetected);
-        notifyController();
 
         if (!isConsumptionWithinLimit()) {
             subCorridors.stream()
@@ -26,34 +24,25 @@ public class Floor {
                         return subCorridor;
                     })
                     .orElseThrow(() -> new Exception("Illegal state"));
-            notifyController();
         }
     }
 
     public void noMovementDetected() {
         subCorridors.forEach(SubCorridor::noMovementDetected);
-        notifyController();
+        //emit();
     }
 
     public int consumption() {
-        return mainCorridors.stream().map(c -> c.getConsumption()).reduce(0, Integer::sum) +
-                subCorridors.stream().map(c -> c.getConsumption()).reduce(0, Integer::sum);
+        return mainCorridors.stream().map(MainCorridor::getConsumption).reduce(0, Integer::sum) +
+                subCorridors.stream().map(SubCorridor::getConsumption).reduce(0, Integer::sum);
     }
 
     public boolean isConsumptionWithinLimit() {
         return consumption() <= maximumAllowedConsumption();
     }
 
-    private void notifyController() {
-        this.observer.update(this);
-    }
-
     private int maximumAllowedConsumption() {
         return this.mainCorridors.size() * 15 + this.subCorridors.size() * 10;
-    }
-
-    public void attachObserver(ControllerInterface observer) {
-        this.observer = observer;
     }
 
     public List<MainCorridor> getMainCorridors() {

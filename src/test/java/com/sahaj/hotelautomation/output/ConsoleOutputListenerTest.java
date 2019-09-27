@@ -1,10 +1,9 @@
 package com.sahaj.hotelautomation.output;
 
-import com.sahaj.hotelautomation.controller.Floor;
-import com.sahaj.hotelautomation.controller.Hotel;
-import com.sahaj.hotelautomation.controller.HotelController;
-import com.sahaj.hotelautomation.corridors.MainCorridor;
-import com.sahaj.hotelautomation.corridors.SubCorridor;
+import com.sahaj.hotelautomation.entities.Hotel;
+import com.sahaj.hotelautomation.entities.corridors.MainCorridor;
+import com.sahaj.hotelautomation.entities.corridors.SubCorridor;
+import com.sahaj.hotelautomation.entities.floors.Floor;
 import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
 import com.sahaj.hotelautomation.utils.EquipmentType;
 import com.sahaj.hotelautomation.utils.State;
@@ -15,8 +14,9 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.Collections;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ConsoleOutputListenerTest {
 
@@ -58,12 +58,12 @@ public class ConsoleOutputListenerTest {
                 )).build();
 
         Floor floor1 = Floor.builder()
-                .mainCorridors(Arrays.asList(mainCorridor))
+                .mainCorridors(Collections.singletonList(mainCorridor))
                 .subCorridors(Arrays.asList(subCorridor1, subCorridor2))
                 .build();
 
         Hotel hotel = Hotel.builder()
-                .floors(Arrays.asList(floor1))
+                .floors(Collections.singletonList(floor1))
                 .build();
 
         OutputListener outputListener = new ConsoleOutputListener();
@@ -104,16 +104,14 @@ public class ConsoleOutputListenerTest {
                 )).build();
 
         Floor floor1 = Floor.builder()
-                .mainCorridors(Arrays.asList(mainCorridor))
+                .mainCorridors(Collections.singletonList(mainCorridor))
                 .subCorridors(Arrays.asList(subCorridor1, subCorridor2))
                 .build();
 
         Hotel hotel = Hotel.builder()
-                .floors(Arrays.asList(floor1))
+                .floors(Collections.singletonList(floor1))
                 .build();
 
-        HotelController hotelController = new HotelController(hotel);
-        hotelController.addNotifiers();
         OutputListener outputListener = new ConsoleOutputListener();
 
         floor1.movementDetected(subCorridor1);
@@ -154,16 +152,14 @@ public class ConsoleOutputListenerTest {
                 )).build();
 
         Floor floor1 = Floor.builder()
-                .mainCorridors(Arrays.asList(mainCorridor))
+                .mainCorridors(Collections.singletonList(mainCorridor))
                 .subCorridors(Arrays.asList(subCorridor1, subCorridor2))
                 .build();
 
         Hotel hotel = Hotel.builder()
-                .floors(Arrays.asList(floor1))
+                .floors(Collections.singletonList(floor1))
                 .build();
 
-        HotelController hotelController = new HotelController(hotel);
-        hotelController.addNotifiers();
         OutputListener outputListener = new ConsoleOutputListener();
 
         floor1.movementDetected(subCorridor1);

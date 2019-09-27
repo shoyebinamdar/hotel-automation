@@ -1,6 +1,7 @@
-package com.sahaj.hotelautomation.equipments;
+package com.sahaj.hotelautomation.entities.corridors;
 
-import com.sahaj.hotelautomation.corridors.MainCorridor;
+import com.sahaj.hotelautomation.entities.corridors.MainCorridor;
+import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
 import com.sahaj.hotelautomation.utils.EquipmentType;
 import com.sahaj.hotelautomation.utils.State;
 import org.junit.Test;

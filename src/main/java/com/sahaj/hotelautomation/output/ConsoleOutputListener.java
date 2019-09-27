@@ -1,9 +1,9 @@
 package com.sahaj.hotelautomation.output;
 
-import com.sahaj.hotelautomation.controller.Floor;
-import com.sahaj.hotelautomation.controller.Hotel;
-import com.sahaj.hotelautomation.corridors.MainCorridor;
-import com.sahaj.hotelautomation.corridors.SubCorridor;
+import com.sahaj.hotelautomation.entities.floors.Floor;
+import com.sahaj.hotelautomation.entities.Hotel;
+import com.sahaj.hotelautomation.entities.corridors.MainCorridor;
+import com.sahaj.hotelautomation.entities.corridors.SubCorridor;
 
 import java.util.List;
 

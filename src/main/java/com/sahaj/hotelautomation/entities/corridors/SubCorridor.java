@@ -1,9 +1,8 @@
-package com.sahaj.hotelautomation.corridors;
+package com.sahaj.hotelautomation.entities.corridors;
 
 import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
 import com.sahaj.hotelautomation.utils.EquipmentType;
 import lombok.Builder;
-import com.sahaj.hotelautomation.utils.State;
 
 import java.util.List;
 
@@ -44,12 +43,6 @@ public class SubCorridor implements Corridor {
                 .filter(electronicEquipment -> electronicEquipment.TYPE == EquipmentType.AC)
                 .findFirst()
                 .ifPresent(ElectronicEquipment::off);
-    }
-
-    public State getACState() {
-        return equipments.stream()
-                .filter(electronicEquipment -> electronicEquipment.TYPE == EquipmentType.AC)
-                .findFirst().get().getState();
     }
 
     public boolean hasMovement() {
