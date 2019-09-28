@@ -1,4 +1,4 @@
-package com.sahaj.hotelautomation;
+package com.sahaj.hotelautomation.controller;
 
 import com.sahaj.hotelautomation.entities.Hotel;
 

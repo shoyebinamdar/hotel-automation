@@ -8,7 +8,8 @@ public class MovementService {
         floor.movementDetected(corridor);
     }
 
-    public void triggerStagnation(Floor floor) {
+    public void triggerStagnation(Floor floor) throws InterruptedException {
+        Thread.sleep(60000);
         floor.noMovementDetected();
     }
 }

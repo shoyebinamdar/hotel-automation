@@ -1,6 +1,5 @@
 package com.sahaj.hotelautomation.controller;
 
-import com.sahaj.hotelautomation.HotelController;
 import com.sahaj.hotelautomation.entities.Hotel;
 import com.sahaj.hotelautomation.entities.corridors.MainCorridor;
 import com.sahaj.hotelautomation.entities.corridors.SubCorridor;
