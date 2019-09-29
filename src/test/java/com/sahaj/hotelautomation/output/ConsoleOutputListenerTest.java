@@ -4,7 +4,10 @@ import com.sahaj.hotelautomation.entities.Hotel;
 import com.sahaj.hotelautomation.entities.corridors.MainCorridor;
 import com.sahaj.hotelautomation.entities.corridors.SubCorridor;
 import com.sahaj.hotelautomation.entities.floors.Floor;
+import com.sahaj.hotelautomation.entities.sensors.MotionSensor;
+import com.sahaj.hotelautomation.entities.sensors.Sensor;
 import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
+import com.sahaj.hotelautomation.services.MovementService;
 import com.sahaj.hotelautomation.utils.EquipmentType;
 import com.sahaj.hotelautomation.utils.State;
 import org.junit.After;
@@ -113,8 +116,12 @@ public class ConsoleOutputListenerTest {
                 .build();
 
         OutputListener outputListener = new ConsoleOutputListener();
+        Sensor sensor = new MotionSensor();
+        MovementService movementService = new MovementService();
+        sensor.registerCorridor(subCorridor1);
+        floor1.registerCorridors();
 
-        floor1.movementDetected(subCorridor1);
+        movementService.triggerMovement(sensor);
         outputListener.write(hotel);
 
         assertEquals(
@@ -162,8 +169,6 @@ public class ConsoleOutputListenerTest {
 
         OutputListener outputListener = new ConsoleOutputListener();
 
-        floor1.movementDetected(subCorridor1);
-        floor1.noMovementDetected();
         outputListener.write(hotel);
 
         assertEquals(

@@ -4,6 +4,7 @@ import com.sahaj.hotelautomation.entities.Hotel;
 import com.sahaj.hotelautomation.entities.corridors.MainCorridor;
 import com.sahaj.hotelautomation.entities.corridors.SubCorridor;
 import com.sahaj.hotelautomation.entities.floors.Floor;
+import com.sahaj.hotelautomation.entities.sensors.MotionSensor;
 import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
 import com.sahaj.hotelautomation.services.MovementService;
 import com.sahaj.hotelautomation.utils.EquipmentType;
@@ -17,6 +18,7 @@ import static org.junit.Assert.assertEquals;
 
 public class HotelControllerTest {
     MovementService movementService = new MovementService();
+    MotionSensor sensor = new MotionSensor();
 
     @Test
     public void shouldGiveValidConsumtionMovementInTwoCorridors() throws Exception {
@@ -42,13 +44,15 @@ public class HotelControllerTest {
                 .equipments(Arrays.asList(
                         new ElectronicEquipment(EquipmentType.LIGHT, State.OFF, 5),
                         new ElectronicEquipment(EquipmentType.AC, State.ON, 10)
-                )).build();
+                ))
+                .build();
 
         SubCorridor subCorridor4 = SubCorridor.builder()
                 .equipments(Arrays.asList(
                         new ElectronicEquipment(EquipmentType.LIGHT, State.OFF, 5),
                         new ElectronicEquipment(EquipmentType.AC, State.ON, 10)
                 )).build();
+
 
         Floor floor1 = Floor.builder()
                 .mainCorridors(Collections.singletonList(mainCorridor))
@@ -65,7 +69,10 @@ public class HotelControllerTest {
 
         HotelController hotelController = new HotelController(hotel);
 
-        movementService.triggerMovement(floor1, subCorridor1);
+        floor1.registerCorridors();
+        sensor.registerCorridor(subCorridor1);
+
+        movementService.triggerMovement(sensor);
 
         assertEquals(65, hotelController.consumption());
         assertEquals(State.ON, subCorridor1.getEquipments().get(0).getState());
@@ -104,7 +111,10 @@ public class HotelControllerTest {
 
         HotelController hotelController = new HotelController(hotel);
 
-        movementService.triggerMovement(floor1, subCorridor1);
+        floor1.registerCorridors();
+        sensor.registerCorridor(subCorridor1);
+
+        movementService.triggerMovement(sensor);
 
         assertEquals(30, hotelController.consumption());
         assertEquals(State.ON, subCorridor1.getEquipments().get(0).getState());
@@ -112,7 +122,7 @@ public class HotelControllerTest {
         assertEquals(State.OFF, subCorridor2.getEquipments().get(0).getState());
         assertEquals(State.OFF, subCorridor2.getEquipments().get(1).getState());
 
-        movementService.triggerStagnation(floor1);
+        movementService.triggerStagnation(sensor);
 
         assertEquals(35, hotelController.consumption());
         assertEquals(State.OFF, subCorridor1.getEquipments().get(0).getState());

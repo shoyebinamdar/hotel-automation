@@ -1,8 +1,10 @@
 package com.sahaj.hotelautomation.entities.corridors;
 
-import com.sahaj.hotelautomation.entities.corridors.SubCorridor;
 import com.sahaj.hotelautomation.entities.floors.Floor;
+import com.sahaj.hotelautomation.entities.sensors.MotionSensor;
+import com.sahaj.hotelautomation.entities.sensors.Sensor;
 import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
+import com.sahaj.hotelautomation.services.MovementService;
 import com.sahaj.hotelautomation.utils.EquipmentType;
 import com.sahaj.hotelautomation.utils.State;
 import org.junit.Before;
@@ -39,12 +41,6 @@ public class SubCorridorTest {
     }
 
     @Test
-    public void shouldTestConsumptionWhenMotionDetected() {
-        subCorridor.movementDetected();
-        assertEquals(15, subCorridor.getConsumption());
-    }
-
-    @Test
     public void shouldThrowExceptionWhenStateIsIllegal() throws Exception {
         MainCorridor mainCorridor = MainCorridor.builder()
                 .equipments(Arrays.asList(
@@ -63,9 +59,15 @@ public class SubCorridorTest {
                 .subCorridors(Arrays.asList(subCorridor1))
                 .build();
 
+        Sensor sensor = new MotionSensor();
+        MovementService movementService = new MovementService();
+
+        sensor.registerCorridor(subCorridor1);
+        floor1.registerCorridors();
+
         exceptionRule.expect(Exception.class);
         exceptionRule.expectMessage("Illegal state");
 
-        floor1.movementDetected(subCorridor1);
+        movementService.triggerMovement(sensor);
     }
 }

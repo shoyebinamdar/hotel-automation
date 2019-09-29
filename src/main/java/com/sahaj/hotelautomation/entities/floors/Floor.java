@@ -12,26 +12,6 @@ public class Floor {
     private List<MainCorridor> mainCorridors;
     private List<SubCorridor> subCorridors;
 
-    public void movementDetected(Corridor corridor) throws Exception {
-        subCorridors.stream().filter(c -> c.equals(corridor)).findFirst().ifPresent(SubCorridor::movementDetected);
-
-        if (!isConsumptionWithinLimit()) {
-            subCorridors.stream()
-                    .filter(c -> !c.equals(corridor) && !c.hasMovement())
-                    .findFirst()
-                    .map(subCorridor -> {
-                        subCorridor.turnOffAC();
-                        return subCorridor;
-                    })
-                    .orElseThrow(() -> new Exception("Illegal state"));
-        }
-    }
-
-    public void noMovementDetected() {
-        subCorridors.forEach(SubCorridor::noMovementDetected);
-        //emit();
-    }
-
     public int consumption() {
         return mainCorridors.stream().map(MainCorridor::getConsumption).reduce(0, Integer::sum) +
                 subCorridors.stream().map(SubCorridor::getConsumption).reduce(0, Integer::sum);
@@ -51,5 +31,26 @@ public class Floor {
 
     public List<SubCorridor> getSubCorridors() {
         return subCorridors;
+    }
+
+    public void normaliseConsumption(Corridor corridor) throws Exception {
+        if (!isConsumptionWithinLimit()) {
+            subCorridors.stream()
+                    .filter(c -> !c.equals(corridor) && !c.hasMovement())
+                    .findFirst()
+                    .map(subCorridor -> {
+                        subCorridor.turnOffAC();
+                        return subCorridor;
+                    })
+                    .orElseThrow(() -> new Exception("Illegal state"));
+        }
+    }
+
+    public void reset() {
+        subCorridors.forEach(SubCorridor::reset);
+    }
+
+    public void registerCorridors() {
+        subCorridors.stream().forEach(subCorridor -> subCorridor.register(this));
     }
 }

@@ -1,6 +1,5 @@
 package com.sahaj.hotelautomation.entities.corridors;
 
-import com.sahaj.hotelautomation.entities.corridors.MainCorridor;
 import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
 import com.sahaj.hotelautomation.utils.EquipmentType;
 import com.sahaj.hotelautomation.utils.State;

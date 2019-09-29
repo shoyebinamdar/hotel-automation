@@ -1,15 +1,13 @@
 package com.sahaj.hotelautomation.services;
 
-import com.sahaj.hotelautomation.entities.corridors.Corridor;
-import com.sahaj.hotelautomation.entities.floors.Floor;
+import com.sahaj.hotelautomation.entities.sensors.Sensor;
 
 public class MovementService {
-    public void triggerMovement(Floor floor, Corridor corridor) throws Exception {
-        floor.movementDetected(corridor);
+    public void triggerMovement(Sensor sensor) throws Exception {
+        sensor.movementStarted();
     }
 
-    public void triggerStagnation(Floor floor) throws InterruptedException {
-        Thread.sleep(60000);
-        floor.noMovementDetected();
+    public void triggerStagnation(Sensor sensor) throws Exception {
+        sensor.movementStopped();
     }
 }

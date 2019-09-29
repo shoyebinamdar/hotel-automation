@@ -3,6 +3,8 @@ package com.sahaj.hotelautomation;
 import com.sahaj.hotelautomation.entities.Hotel;
 import com.sahaj.hotelautomation.entities.corridors.Corridor;
 import com.sahaj.hotelautomation.entities.floors.Floor;
+import com.sahaj.hotelautomation.entities.sensors.MotionSensor;
+import com.sahaj.hotelautomation.entities.sensors.Sensor;
 import com.sahaj.hotelautomation.output.ConsoleOutputListener;
 import com.sahaj.hotelautomation.output.OutputListener;
 import com.sahaj.hotelautomation.services.MovementService;
@@ -35,15 +37,19 @@ public class HotelAutomationApplication {
 
             Floor floor = hotel.getFloors().get(floorIndex - 1);
             Corridor corridor = floor.getSubCorridors().get(subCorridorIndex - 1);
-
+            Sensor sensor = new MotionSensor();
             MovementService movementService = new MovementService();
-            movementService.triggerMovement(floor, corridor);
+
+            floor.registerCorridors();
+            sensor.registerCorridor(corridor);
+
+            movementService.triggerMovement(sensor);
 
             outputListener.write(hotel);
 
             Thread.sleep(6000);
 
-            movementService.triggerStagnation(floor);
+            movementService.triggerStagnation(sensor);
             outputListener.write(hotel);
         }
     }
