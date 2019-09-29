@@ -1,7 +1,6 @@
 package com.sahaj.hotelautomation.entities.corridors;
 
 import com.sahaj.hotelautomation.entities.floors.Floor;
-import com.sahaj.hotelautomation.entities.sensors.Sensor;
 import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
 import com.sahaj.hotelautomation.utils.EquipmentType;
 import lombok.Builder;
@@ -60,9 +59,9 @@ public class SubCorridor implements Corridor {
     @Override
     public void notifyFloor() throws Exception {
         if (hasMovement)
-            this.floor.normaliseConsumption(this);
+            this.floor.stabilise(this);
         else
-            this.floor.reset();
+            this.floor.restore();
     }
 
     @Override

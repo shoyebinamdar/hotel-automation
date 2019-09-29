@@ -18,22 +18,14 @@ public class Floor {
     }
 
     public boolean isConsumptionWithinLimit() {
-        return consumption() <= maximumAllowedConsumption();
+        return consumption() <= threshold();
     }
 
-    private int maximumAllowedConsumption() {
+    private int threshold() {
         return this.mainCorridors.size() * 15 + this.subCorridors.size() * 10;
     }
 
-    public List<MainCorridor> getMainCorridors() {
-        return mainCorridors;
-    }
-
-    public List<SubCorridor> getSubCorridors() {
-        return subCorridors;
-    }
-
-    public void normaliseConsumption(Corridor corridor) throws Exception {
+    public void stabilise(Corridor corridor) throws Exception {
         if (!isConsumptionWithinLimit()) {
             subCorridors.stream()
                     .filter(c -> !c.equals(corridor) && !c.hasMovement())
@@ -46,11 +38,20 @@ public class Floor {
         }
     }
 
-    public void reset() {
+    public void restore() {
         subCorridors.forEach(SubCorridor::reset);
     }
 
     public void registerCorridors() {
+        mainCorridors.stream().forEach(subCorridor -> subCorridor.register(this));
         subCorridors.stream().forEach(subCorridor -> subCorridor.register(this));
+    }
+
+    public List<MainCorridor> getMainCorridors() {
+        return mainCorridors;
+    }
+
+    public List<SubCorridor> getSubCorridors() {
+        return subCorridors;
     }
 }

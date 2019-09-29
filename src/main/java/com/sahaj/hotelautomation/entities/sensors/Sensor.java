@@ -6,5 +6,4 @@ public interface Sensor {
     void movementStarted() throws Exception;
     void movementStopped() throws Exception;
     void registerCorridor(Corridor corridor);
-    Corridor getCorridor();
 }
