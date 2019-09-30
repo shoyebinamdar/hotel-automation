@@ -1,19 +1,11 @@
 package com.sahaj.hotelautomation.controller;
 
 import com.sahaj.hotelautomation.entities.Hotel;
-import com.sahaj.hotelautomation.entities.corridors.MainCorridor;
-import com.sahaj.hotelautomation.entities.corridors.SubCorridor;
-import com.sahaj.hotelautomation.entities.floors.Floor;
 import com.sahaj.hotelautomation.entities.sensors.MotionSensor;
-import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
 import com.sahaj.hotelautomation.services.MovementService;
-import com.sahaj.hotelautomation.utils.EquipmentType;
 import com.sahaj.hotelautomation.utils.HotelFactory;
-import com.sahaj.hotelautomation.utils.State;
+import com.sahaj.hotelautomation.equipments.EquipmentState;
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
@@ -33,10 +25,10 @@ public class HotelControllerTest {
         movementService.triggerMovement(sensor);
 
         assertEquals(65, hotelController.consumption());
-        assertEquals(State.ON, hotel.getFloors().get(0).getSubCorridors().get(0).getEquipments().get(0).getState());
-        assertEquals(State.ON, hotel.getFloors().get(0).getSubCorridors().get(0).getEquipments().get(1).getState());
-        assertEquals(State.OFF, hotel.getFloors().get(0).getSubCorridors().get(1).getEquipments().get(0).getState());
-        assertEquals(State.OFF, hotel.getFloors().get(0).getSubCorridors().get(1).getEquipments().get(1).getState());
+        assertEquals(EquipmentState.ON, hotel.getFloors().get(0).getSubCorridors().get(0).getEquipments().get(0).getEquipmentState());
+        assertEquals(EquipmentState.ON, hotel.getFloors().get(0).getSubCorridors().get(0).getEquipments().get(1).getEquipmentState());
+        assertEquals(EquipmentState.OFF, hotel.getFloors().get(0).getSubCorridors().get(1).getEquipments().get(0).getEquipmentState());
+        assertEquals(EquipmentState.OFF, hotel.getFloors().get(0).getSubCorridors().get(1).getEquipments().get(1).getEquipmentState());
     }
 
     @Test
@@ -51,17 +43,17 @@ public class HotelControllerTest {
         movementService.triggerMovement(sensor);
 
         assertEquals(30, hotelController.consumption());
-        assertEquals(State.ON, hotel.getFloors().get(0).getSubCorridors().get(0).getEquipments().get(0).getState());
-        assertEquals(State.ON, hotel.getFloors().get(0).getSubCorridors().get(0).getEquipments().get(1).getState());
-        assertEquals(State.OFF, hotel.getFloors().get(0).getSubCorridors().get(1).getEquipments().get(0).getState());
-        assertEquals(State.OFF, hotel.getFloors().get(0).getSubCorridors().get(1).getEquipments().get(1).getState());
+        assertEquals(EquipmentState.ON, hotel.getFloors().get(0).getSubCorridors().get(0).getEquipments().get(0).getEquipmentState());
+        assertEquals(EquipmentState.ON, hotel.getFloors().get(0).getSubCorridors().get(0).getEquipments().get(1).getEquipmentState());
+        assertEquals(EquipmentState.OFF, hotel.getFloors().get(0).getSubCorridors().get(1).getEquipments().get(0).getEquipmentState());
+        assertEquals(EquipmentState.OFF, hotel.getFloors().get(0).getSubCorridors().get(1).getEquipments().get(1).getEquipmentState());
 
         movementService.triggerStagnation(sensor);
 
         assertEquals(35, hotelController.consumption());
-        assertEquals(State.OFF, hotel.getFloors().get(0).getSubCorridors().get(0).getEquipments().get(0).getState());
-        assertEquals(State.ON, hotel.getFloors().get(0).getSubCorridors().get(0).getEquipments().get(1).getState());
-        assertEquals(State.OFF, hotel.getFloors().get(0).getSubCorridors().get(1).getEquipments().get(0).getState());
-        assertEquals(State.ON, hotel.getFloors().get(0).getSubCorridors().get(1).getEquipments().get(1).getState());
+        assertEquals(EquipmentState.OFF, hotel.getFloors().get(0).getSubCorridors().get(0).getEquipments().get(0).getEquipmentState());
+        assertEquals(EquipmentState.ON, hotel.getFloors().get(0).getSubCorridors().get(0).getEquipments().get(1).getEquipmentState());
+        assertEquals(EquipmentState.OFF, hotel.getFloors().get(0).getSubCorridors().get(1).getEquipments().get(0).getEquipmentState());
+        assertEquals(EquipmentState.ON, hotel.getFloors().get(0).getSubCorridors().get(1).getEquipments().get(1).getEquipmentState());
     }
 }

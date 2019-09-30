@@ -2,7 +2,7 @@ package com.sahaj.hotelautomation.entities.corridors;
 
 import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
 import com.sahaj.hotelautomation.utils.EquipmentType;
-import com.sahaj.hotelautomation.utils.State;
+import com.sahaj.hotelautomation.equipments.EquipmentState;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -14,8 +14,8 @@ public class MainCorridorTest {
     public void testDefaultConsumption() {
         MainCorridor mainCorridor = MainCorridor.builder()
                 .equipments(Arrays.asList(
-                        new ElectronicEquipment(EquipmentType.LIGHT, State.ON, 5),
-                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10))
+                        new ElectronicEquipment(EquipmentType.LIGHT, EquipmentState.ON, 5),
+                        new ElectronicEquipment(EquipmentType.AC, EquipmentState.ON, 10))
                 ).build();
         assertEquals(15, mainCorridor.getConsumption());
     }

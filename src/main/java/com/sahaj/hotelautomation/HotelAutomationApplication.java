@@ -32,7 +32,10 @@ public class HotelAutomationApplication {
         outputListener.write(hotel);
 
         while (true) {
+            System.out.println("Trigger sensor ...");
+            System.out.println("Enter floor number");
             Integer floorIndex = Integer.parseInt(in.nextLine());
+            System.out.println("Enter sub corridor number");
             Integer subCorridorIndex = Integer.parseInt(in.nextLine());
 
             Floor floor = hotel.getFloors().get(floorIndex - 1);

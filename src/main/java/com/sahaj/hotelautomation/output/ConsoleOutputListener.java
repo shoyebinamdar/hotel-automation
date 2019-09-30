@@ -20,13 +20,13 @@ public class ConsoleOutputListener implements OutputListener {
             for (int j = 0; j < mainCorridors.size(); j++) {
                 System.out.println("Main corridor " + (j + 1));
                 MainCorridor mainCorridor = mainCorridors.get(j);
-                mainCorridor.getEquipments().forEach(e -> System.out.println(e.TYPE + " : " + e.getState()));
+                mainCorridor.getEquipments().forEach(e -> System.out.println(e.TYPE + " : " + e.getEquipmentState()));
             }
 
             for (int k = 0; k < subCorridors.size(); k++) {
                 System.out.println("Sub corridor " + (k + 1));
                 SubCorridor subCorridor = subCorridors.get(k);
-                subCorridor.getEquipments().forEach(e -> System.out.println(e.TYPE + " : " + e.getState()));
+                subCorridor.getEquipments().forEach(e -> System.out.println(e.TYPE + " : " + e.getEquipmentState()));
             }
         }
     }

@@ -3,6 +3,8 @@ package com.sahaj.hotelautomation.entities.floors;
 import com.sahaj.hotelautomation.entities.corridors.Corridor;
 import com.sahaj.hotelautomation.entities.corridors.MainCorridor;
 import com.sahaj.hotelautomation.entities.corridors.SubCorridor;
+import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
+import com.sahaj.hotelautomation.utils.EquipmentType;
 import lombok.Builder;
 
 import java.util.List;
@@ -38,8 +40,15 @@ public class Floor {
         }
     }
 
-    public void restore() {
-        subCorridors.forEach(SubCorridor::reset);
+    public void restore(Corridor corridor) {
+        subCorridors.stream()
+                .filter(c -> !c.equals(corridor) && !c.hasMovement())
+                .findFirst()
+                .map(subCorridor -> {
+                    subCorridor.turnOnAC();
+                    return subCorridor;
+                });
+        //subCorridors.forEach(SubCorridor::reset);
     }
 
     public void registerCorridors() {

@@ -7,7 +7,7 @@ import lombok.Builder;
 import java.util.List;
 
 @Builder
-public class MainCorridor implements Corridor{
+public class MainCorridor implements Corridor {
     private List<ElectronicEquipment> equipments;
 
     public int getConsumption() {

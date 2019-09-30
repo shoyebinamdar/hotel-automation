@@ -9,7 +9,7 @@ import com.sahaj.hotelautomation.entities.sensors.Sensor;
 import com.sahaj.hotelautomation.equipments.ElectronicEquipment;
 import com.sahaj.hotelautomation.services.MovementService;
 import com.sahaj.hotelautomation.utils.EquipmentType;
-import com.sahaj.hotelautomation.utils.State;
+import com.sahaj.hotelautomation.equipments.EquipmentState;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,20 +44,20 @@ public class ConsoleOutputListenerTest {
     public void shouldWriteDefaultHotelState() {
         MainCorridor mainCorridor = MainCorridor.builder()
                 .equipments(Arrays.asList(
-                        new ElectronicEquipment(EquipmentType.LIGHT, State.ON, 5),
-                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10))
+                        new ElectronicEquipment(EquipmentType.LIGHT, EquipmentState.ON, 5),
+                        new ElectronicEquipment(EquipmentType.AC, EquipmentState.ON, 10))
                 ).build();
 
         SubCorridor subCorridor1 = SubCorridor.builder()
                 .equipments(Arrays.asList(
-                        new ElectronicEquipment(EquipmentType.LIGHT, State.OFF, 5),
-                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10)
+                        new ElectronicEquipment(EquipmentType.LIGHT, EquipmentState.OFF, 5),
+                        new ElectronicEquipment(EquipmentType.AC, EquipmentState.ON, 10)
                 )).build();
 
         SubCorridor subCorridor2 = SubCorridor.builder()
                 .equipments(Arrays.asList(
-                        new ElectronicEquipment(EquipmentType.LIGHT, State.OFF, 5),
-                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10)
+                        new ElectronicEquipment(EquipmentType.LIGHT, EquipmentState.OFF, 5),
+                        new ElectronicEquipment(EquipmentType.AC, EquipmentState.ON, 10)
                 )).build();
 
         Floor floor1 = Floor.builder()
@@ -90,20 +90,20 @@ public class ConsoleOutputListenerTest {
     public void shouldWriteHotelStateWhenMovementInFloorOneSubCorridorOne() throws Exception {
         MainCorridor mainCorridor = MainCorridor.builder()
                 .equipments(Arrays.asList(
-                        new ElectronicEquipment(EquipmentType.LIGHT, State.ON, 5),
-                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10))
+                        new ElectronicEquipment(EquipmentType.LIGHT, EquipmentState.ON, 5),
+                        new ElectronicEquipment(EquipmentType.AC, EquipmentState.ON, 10))
                 ).build();
 
         SubCorridor subCorridor1 = SubCorridor.builder()
                 .equipments(Arrays.asList(
-                        new ElectronicEquipment(EquipmentType.LIGHT, State.OFF, 5),
-                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10)
+                        new ElectronicEquipment(EquipmentType.LIGHT, EquipmentState.OFF, 5),
+                        new ElectronicEquipment(EquipmentType.AC, EquipmentState.ON, 10)
                 )).build();
 
         SubCorridor subCorridor2 = SubCorridor.builder()
                 .equipments(Arrays.asList(
-                        new ElectronicEquipment(EquipmentType.LIGHT, State.OFF, 5),
-                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10)
+                        new ElectronicEquipment(EquipmentType.LIGHT, EquipmentState.OFF, 5),
+                        new ElectronicEquipment(EquipmentType.AC, EquipmentState.ON, 10)
                 )).build();
 
         Floor floor1 = Floor.builder()
@@ -142,20 +142,20 @@ public class ConsoleOutputListenerTest {
     public void shouldRollBackToDefaultStateWhenMovementStopped() throws Exception {
         MainCorridor mainCorridor = MainCorridor.builder()
                 .equipments(Arrays.asList(
-                        new ElectronicEquipment(EquipmentType.LIGHT, State.ON, 5),
-                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10))
+                        new ElectronicEquipment(EquipmentType.LIGHT, EquipmentState.ON, 5),
+                        new ElectronicEquipment(EquipmentType.AC, EquipmentState.ON, 10))
                 ).build();
 
         SubCorridor subCorridor1 = SubCorridor.builder()
                 .equipments(Arrays.asList(
-                        new ElectronicEquipment(EquipmentType.LIGHT, State.OFF, 5),
-                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10)
+                        new ElectronicEquipment(EquipmentType.LIGHT, EquipmentState.OFF, 5),
+                        new ElectronicEquipment(EquipmentType.AC, EquipmentState.ON, 10)
                 )).build();
 
         SubCorridor subCorridor2 = SubCorridor.builder()
                 .equipments(Arrays.asList(
-                        new ElectronicEquipment(EquipmentType.LIGHT, State.OFF, 5),
-                        new ElectronicEquipment(EquipmentType.AC, State.ON, 10)
+                        new ElectronicEquipment(EquipmentType.LIGHT, EquipmentState.OFF, 5),
+                        new ElectronicEquipment(EquipmentType.AC, EquipmentState.ON, 10)
                 )).build();
 
         Floor floor1 = Floor.builder()

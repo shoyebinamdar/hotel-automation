@@ -27,6 +27,13 @@ public class SubCorridor implements Corridor {
                 .ifPresent(ElectronicEquipment::off);
     }
 
+    public void turnOnAC() {
+        equipments.stream()
+                .filter(electronicEquipment -> electronicEquipment.TYPE == EquipmentType.AC)
+                .findFirst()
+                .ifPresent(ElectronicEquipment::on);
+    }
+
     public boolean hasMovement() {
         return hasMovement;
     }
@@ -60,8 +67,10 @@ public class SubCorridor implements Corridor {
     public void notifyFloor() throws Exception {
         if (hasMovement)
             this.floor.stabilise(this);
-        else
-            this.floor.restore();
+        else {
+            reset();
+            this.floor.restore(this);
+        }
     }
 
     @Override
