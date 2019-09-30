@@ -14,6 +14,7 @@ from command line, and then it generates the "Hotel" using
 ##How to Run
 
 * Clone this repository on your local machine
-* Open the project as a gradle project (on IDE of your choice)
+* Open the project as a gradle project (preferrably on IntelliJ)
+* Enable annotation processing (This is required because I have added some Lomboka annotations)
 * Build and run 
 
